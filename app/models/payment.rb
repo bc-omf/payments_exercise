@@ -1,7 +1,7 @@
 class Payment < ActiveRecord::Base
   belongs_to :loan
   validates_presence_of :payment_amount
-  validate :payment_cannot_be_greater_than_outstanding_balance
+  validate :payment_cannot_be_greater_than_outstanding_balance, if: :payment_amount
 
   def payment_cannot_be_greater_than_outstanding_balance
     return unless
